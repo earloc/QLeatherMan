@@ -12,7 +12,7 @@ namespace QLeatherMan.Generate
         [Value(1, Required = true, Default = "GraphQlClientGenerator.generated.cs", HelpText = "Path to the file the generated client will be saved to")]
         public string DestinationFile { get; set; } = "GraphQlClientGenerator.generated.cs";
 
-        [Option(3, Required = false, Default = "GraphQlClientGenerator.Generated", HelpText = "Namespace used for generated types")]
+        [Value(3, Required = false, Default = "GraphQlClientGenerator.Generated", HelpText = "Namespace used for generated types")]
         public string Namespace { get; set; } = "GraphQlClientGenerator.Generated";
     }
 }

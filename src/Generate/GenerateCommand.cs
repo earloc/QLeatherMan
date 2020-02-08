@@ -18,7 +18,7 @@ namespace QLeatherMan.Generate
         }
         public async Task RunAsync()
         {
-            var schema = await GraphQlGenerator.RetrieveSchema(options.SourceUri).ConfigureAwait(false);
+            var schema = await GraphQlGenerator.RetrieveSchema(options.SourceUri?.AbsoluteUri).ConfigureAwait(false);
             Console.WriteLine(JsonSerializer.Serialize(schema, new JsonSerializerOptions()
             {
                 WriteIndented = true
