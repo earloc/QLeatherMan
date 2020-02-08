@@ -22,15 +22,15 @@ namespace QLeatherMan.Diff
         {
             var builder = new StringBuilder();
 
-            builder.AppendLine($"- (#) __{type}__");
+            builder.AppendLine($"- **{type}**");
 
             foreach (var field in addedFields)
             {
-                builder.AppendLine($"  - (+) **{field}**");
+                builder.AppendLine($"  - {field}");
             }
             foreach (var field in removedFields)
             {
-                builder.AppendLine($"  - (-) ~~{field}~~");
+                builder.AppendLine($"  -  ~~{field}~~");
             }
 
             return builder.ToString();
