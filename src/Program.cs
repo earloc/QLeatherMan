@@ -11,6 +11,7 @@ namespace QLeatherMan
         static async Task Main(string[] args)
         {
             var services = new ServiceCollection();
+
             services.AddScoped<SchemaDiffBuilder>();
 
             var result = Parser.Default.ParseArguments<GenerateVerb, DiffVerb>(args);
