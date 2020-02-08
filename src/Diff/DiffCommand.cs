@@ -8,7 +8,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-#nullable enable
 
 namespace QLeatherMan.Diff
 {
@@ -48,8 +47,8 @@ namespace QLeatherMan.Diff
 
         }
 
-        private Task<GraphQlSchema> ReadSchemaAsync(Uri schemaUri)
-            => GraphQlGenerator.RetrieveSchema(schemaUri.AbsoluteUri);
+        private Task<GraphQlSchema> ReadSchemaAsync(Uri? schemaUri)
+            => GraphQlGenerator.RetrieveSchema(schemaUri?.AbsoluteUri);
 
         private void ShowDiff(GraphQlSchema left, GraphQlSchema right)
         {
@@ -102,5 +101,3 @@ namespace QLeatherMan.Diff
         }
     }
 }
-
-#nullable restore

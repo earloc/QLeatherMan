@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-#nullable enable
 
 namespace QLeatherMan.Diff
 {
@@ -53,5 +52,3 @@ namespace QLeatherMan.Diff
         }
     }
 }
-
-#nullable restore

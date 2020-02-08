@@ -14,6 +14,7 @@
     <Authors>earloc</Authors>
     <Company>eSc</Company>
     <Product>dotnet-QLeatherMan</Product>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
