@@ -28,21 +28,21 @@ namespace QLeatherMan.Diff
         {
             var builder = new StringBuilder();
 
-            if (addedTypes.Any()) builder.AppendLine($"## Added Types");
+            if (addedTypes.Any()) builder.AppendLine($"## {nameof(Added)} Types");
 
             foreach (var type in addedTypes)
             {
                 builder.AppendLine($"- (+) **{type}**");
             }
 
-            if (removedTypes.Any()) builder.AppendLine($"## Removed Types");
+            if (removedTypes.Any()) builder.AppendLine($"## {nameof(Removed)} Types");
 
             foreach (var type in removedTypes)
             {
                 builder.AppendLine($"- (-) ~~{type}~~");
             }
 
-            if (modifiedTypes.Any()) builder.AppendLine($"## Modified Types");
+            if (modifiedTypes.Any()) builder.AppendLine($"## {nameof(Modified)} Types");
 
             foreach (var type in modifiedTypes)
             {

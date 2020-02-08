@@ -64,11 +64,11 @@ namespace QLeatherMan.Diff
 
         private void CompareTypes(Dictionary<string, GraphQlType> leftTypes, Dictionary<string, GraphQlType> rightTypes)
         {
-            var removedTypes = rightTypes.Keys.Except(leftTypes.Keys).ToArray();
+            var removedTypes = leftTypes.Keys.Except(rightTypes.Keys).ToArray();
             foreach (var type in removedTypes)
                 diff.Removed(type);
 
-            var addedTypes = leftTypes.Keys.Except(rightTypes.Keys).ToArray();
+            var addedTypes = rightTypes.Keys.Except(leftTypes.Keys).ToArray();
             foreach (var type in addedTypes)
                 diff.Added(type);
         }
@@ -86,8 +86,8 @@ namespace QLeatherMan.Diff
                 var leftFields = left.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
                 var rightFields = right.Value.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
 
-                var removedFields = rightFields.Keys.Except(leftFields.Keys).ToArray();
-                var addedFields = leftFields.Keys.Except(rightFields.Keys).ToArray();
+                var removedFields = leftFields.Keys.Except(rightFields.Keys).ToArray();
+                var addedFields = rightFields.Keys.Except(leftFields.Keys).ToArray();
 
                 if (!removedFields.Any() && !addedFields.Any())
                 {
