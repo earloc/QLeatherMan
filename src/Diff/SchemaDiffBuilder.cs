@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Text;
 
 namespace QLeatherMan.Diff
@@ -23,25 +23,25 @@ namespace QLeatherMan.Diff
             return builder;
         }
 
-        public override string ToString()
+        public string ToMarkdown(Uri? leftUri, Uri? rightUri)
         {
             var builder = new StringBuilder();
+            builder.AppendLine($"# Differences between");
+            builder.AppendLine($"- (l) {leftUri}");
+            builder.AppendLine($"- (r) {rightUri}");
 
-            if (addedTypes.Any()) builder.AppendLine($"## {nameof(Added)} Types");
+
+            builder.AppendLine($"## Types");
 
             foreach (var type in addedTypes)
             {
                 builder.AppendLine($"- (+) **{type}**");
             }
 
-            if (removedTypes.Any()) builder.AppendLine($"## {nameof(Removed)} Types");
-
             foreach (var type in removedTypes)
             {
                 builder.AppendLine($"- (-) ~~{type}~~");
             }
-
-            if (modifiedTypes.Any()) builder.AppendLine($"## {nameof(Modified)} Types");
 
             foreach (var type in modifiedTypes)
             {

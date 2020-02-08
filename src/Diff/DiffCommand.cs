@@ -58,7 +58,15 @@ namespace QLeatherMan.Diff
             CompareTypes(leftTypes, rightTypes);
             CompareFields(leftTypes, rightTypes);
 
-            File.WriteAllText("diff.md", diff.ToString());
+            var comparisonReport = diff.ToMarkdown(options.LeftUri, options.RightUri);
+
+            if (!(options.ReportMarkdownPath is null))
+            {
+                File.WriteAllText(options.ReportMarkdownPath, comparisonReport);
+            }
+
+            if (!options.Silent)
+                Console.WriteLine(comparisonReport);
         }
 
         private void CompareTypes(Dictionary<string, GraphQlType> leftTypes, Dictionary<string, GraphQlType> rightTypes)
