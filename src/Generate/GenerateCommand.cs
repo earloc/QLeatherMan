@@ -19,10 +19,6 @@ namespace QLeatherMan.Generate
         public async Task RunAsync()
         {
             var schema = await GraphQlGenerator.RetrieveSchema(options.Source).ConfigureAwait(false);
-            Console.WriteLine(JsonSerializer.Serialize(schema, new JsonSerializerOptions()
-            {
-                WriteIndented = true
-            }));
             var content = GraphQlGenerator.GenerateFullClientCSharpFile(schema, options.Namespace);
             File.WriteAllText(options.DestinationFile, content);
         }
