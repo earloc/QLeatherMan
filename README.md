@@ -1,6 +1,8 @@
 # QLeatherMan
 The ~~swiss-army-knife~~ multi-tool of choice when dealing with GraphQL schemas in .NET-land.
 
+![.NET Core](https://github.com/earloc/QLeatherMan/workflows/.NET%20Core/badge.svg)
+
 ## What is it?
 QLeatherman, or short qlman, is a dotnet core cli-utility to help deailing with common tasks when GraphQL meets .NET (Core).
 
