@@ -1,5 +1,5 @@
 # QLeatherMan
-The ~~swiss-army-knife~~ leatherman when dealing with GraphQL schemas in .NET-land.
+The ~~swiss-army-knife~~ multi-tool of choice when dealing with GraphQL schemas in .NET-land.
 
 ## What is it?
 QLeatherman, or short qlman, is a dotnet core cli-utility to help deailing with common tasks when GraphQL meets .NET (Core).
@@ -9,6 +9,15 @@ Main aspects are:
 - great interop with various build-pipelines
 - OOTB generation of C#-clients given a GraphQL schema
 - maintaining backwards-compatible GraphQL-schemas by providing automated reports of changes between two version of an API (you can, of course, compare two completely unrelated schemas, if that makes any sense to you ^^)
+
+## How to get it?
+
+### dotnet global tool
+Run the follwoing command to download QLeatherman as a global dotnet-tool
+
+```
+dotnet tool install --global QLeatherman
+```
 
 ### Examples
 #### Generating C#-Clients

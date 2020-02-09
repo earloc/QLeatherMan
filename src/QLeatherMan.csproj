@@ -15,6 +15,14 @@
     <Company>eSc</Company>
     <Product>dotnet-QLeatherMan</Product>
     <Nullable>enable</Nullable>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/earloc/QLeatherMan</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/earloc/QLeatherMan</RepositoryUrl>
+    <PackageTags>GraphQL C# Client compare diff</PackageTags>
+    <PackageReleaseNotes>0.1.0 - initial release</PackageReleaseNotes>
+    <RepositoryType>github</RepositoryType>
+    <PackageIcon>GraphQL.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +36,17 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\assets\GraphQL.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
