@@ -37,6 +37,7 @@ Invoking the following command will generate a report showing the current differ
 ```
 dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land/graphql/
 ```
+> the sample comparison above does not actually make any sense, but showcases the output of differing schemas
 
 ## ToDos
 - [ ] publish as dotnet-tool ;)
