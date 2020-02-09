@@ -12,11 +12,11 @@ namespace QLeatherMan.Diff
             this.type = type;
         }
 
-        private readonly List<string> removedFields = new List<string>();
-        internal void Removed(params string[] fields) => removedFields.AddRange(fields);
+        private readonly List<(string name, string type, bool nonNull)> removedFields = new List<(string name, string type, bool nonNull)>();
+        internal void Removed(params (string name, string type, bool nonNull)[] fields) => removedFields.AddRange(fields);
 
-        private readonly List<string> addedFields = new List<string>();
-        internal void Added(params string[] fields) => addedFields.AddRange(fields);
+        private readonly List<(string name, string type, bool nonNull)> addedFields = new List<(string name, string type, bool nonNull)>();
+        internal void Added(params (string name, string type, bool nonNull)[] fields) => addedFields.AddRange(fields);
 
         public override string ToString()
         {
@@ -26,11 +26,11 @@ namespace QLeatherMan.Diff
 
             foreach (var field in addedFields)
             {
-                builder.AppendLine($"  - (+) {field}");
+                builder.AppendLine($"  - (+) {field.name} : {field.type}{(field.nonNull ? "!" : "?")}");
             }
             foreach (var field in removedFields)
             {
-                builder.AppendLine($"  -  (-) ~~{field}~~");
+                builder.AppendLine($"  -  (-) ~~{field.name} : {field.type}{(field.nonNull ? "!" : "?")}~~");
             }
 
             return builder.ToString();

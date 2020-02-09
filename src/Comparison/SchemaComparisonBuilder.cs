@@ -34,7 +34,10 @@ namespace QLeatherMan.Diff
             builder.AppendLine($"- (+) ->   addition");
             builder.AppendLine($"- (-) -> ~~removal~~");
             builder.AppendLine($"- (#) -> **modification**");
-            builder.AppendLine($"- (!) -> __deprecation__ (not implemented)");
+            builder.AppendLine($"- (~) -> __deprecation__ (not implemented)");
+            builder.AppendLine($"- ! -> non-nullable");
+            builder.AppendLine($"- ? -> nullable");
+            builder.AppendLine($"");
 
             builder.AppendLine($"## Types");
 

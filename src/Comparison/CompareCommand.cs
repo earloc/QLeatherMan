@@ -93,18 +93,34 @@ namespace QLeatherMan.Diff
                 var leftFields = left.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
                 var rightFields = right.Value.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
 
-                var removedFields = leftFields.Keys.Except(rightFields.Keys).ToArray();
-                var addedFields = rightFields.Keys.Except(leftFields.Keys).ToArray();
+                var removedFieldNames = leftFields.Keys.Except(rightFields.Keys).ToArray();
+                var removedFields = removedFieldNames.Select(x => leftFields[x]).ToArray();
 
-                if (!removedFields.Any() && !addedFields.Any())
+                var addedFieldNames = rightFields.Keys.Except(leftFields.Keys).ToArray();
+                var addedFields = addedFieldNames.Select(x => rightFields[x]).ToArray();
+
+                if (!removedFieldNames.Any() && !addedFieldNames.Any())
                 {
                     continue;
                 }
 
                 var modified = diff.Modified(right.Key);
 
-                modified.Removed(removedFields);
-                modified.Added(addedFields);
+                modified.Removed(removedFields.Select(x => 
+                    (
+                        name: x.Name, 
+                        type: x.Type.Name ?? x.Type.OfType.Name, 
+                        nonNull: x.Type.Kind == GraphQlTypeKind.NonNull
+                    )
+                ).ToArray());
+
+                modified.Added(addedFields.Select(x =>
+                    (
+                        name: x.Name,
+                        type: x.Type.Name ?? x.Type.OfType.Name,
+                        nonNull: x.Type.Kind == GraphQlTypeKind.NonNull
+                    )
+                ).ToArray());
             }
         }
     }
