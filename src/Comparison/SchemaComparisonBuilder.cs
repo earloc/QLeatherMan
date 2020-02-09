@@ -27,9 +27,14 @@ namespace QLeatherMan.Diff
         {
             var builder = new StringBuilder();
             builder.AppendLine($"# Differences between");
-            builder.AppendLine($"- (l) {leftUri}");
-            builder.AppendLine($"- (r) {rightUri}");
+            builder.AppendLine($"- {leftUri}");
+            builder.AppendLine($"- {rightUri}");
 
+            builder.AppendLine($@"## legend");
+            builder.AppendLine($"- (+) ->   addition");
+            builder.AppendLine($"- (-) -> ~~removal~~");
+            builder.AppendLine($"- (#) -> **modification**");
+            builder.AppendLine($"- (!) -> __deprecation__ (not implemented)");
 
             builder.AppendLine($"## Types");
 
