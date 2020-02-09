@@ -6,7 +6,7 @@ using System.Text;
 namespace QLeatherMan.Diff
 {
     [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "used via DependencyInjection")]
-    internal class SchemaDiffBuilder
+    internal class SchemaComparisonBuilder
     {
         private readonly IList<string> removedTypes = new List<string>();
         internal void Removed(string type) => removedTypes.Add(type);
@@ -14,10 +14,10 @@ namespace QLeatherMan.Diff
         private readonly IList<string> addedTypes = new List<string>();
         internal void Added(string type) => addedTypes.Add(type);
 
-        private readonly IList<TypeDiffBuilder> modifiedTypes = new List<TypeDiffBuilder>();
-        internal TypeDiffBuilder Modified(string type)
+        private readonly IList<TypeComparisonBuilder> modifiedTypes = new List<TypeComparisonBuilder>();
+        internal TypeComparisonBuilder Modified(string type)
         {
-            var builder = new TypeDiffBuilder(type);
+            var builder = new TypeComparisonBuilder(type);
             modifiedTypes.Add(builder);
 
             return builder;

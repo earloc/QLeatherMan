@@ -3,8 +3,8 @@ using System;
 
 namespace QLeatherMan.Diff
 {
-    [Verb("diff", HelpText = "performs a difference-analysis of two GraphQL-schemas")]
-    public class DiffVerb
+    [Verb("compare", HelpText = "performs a difference-analysis of two GraphQL-schemas")]
+    public class CompareVerb
     {
         [Value(0, Required = true, HelpText = "Uri of the left hand side for the diff-comparison")]
         public Uri? LeftUri { get; set; }

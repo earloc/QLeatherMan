@@ -12,19 +12,19 @@ namespace QLeatherMan
         {
             var services = new ServiceCollection();
 
-            services.AddScoped<SchemaDiffBuilder>();
+            services.AddScoped<SchemaComparisonBuilder>();
 
-            var result = Parser.Default.ParseArguments<GenerateVerb, DiffVerb>(args);
+            var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb>(args);
             result
                 .WithParsed<GenerateVerb>(options =>
                 {
                     services.AddSingleton(options);
                     services.AddSingleton<ICommand, GenerateCommand>();
                 })
-                .WithParsed<DiffVerb>(options =>
+                .WithParsed<CompareVerb>(options =>
                 {
                     services.AddSingleton(options);
-                    services.AddSingleton<ICommand, DiffCommand>();
+                    services.AddSingleton<ICommand, CompareCommand>();
                 })
                 .WithNotParsed(errors =>
                     services.AddSingleton(new ShowErrorCommand(errors))

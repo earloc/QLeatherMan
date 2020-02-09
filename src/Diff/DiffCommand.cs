@@ -13,12 +13,12 @@ namespace QLeatherMan.Diff
 {
     [SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "used via DependencyInjection")]
 
-    internal class DiffCommand : ICommand
+    internal class CompareCommand : ICommand
     {
-        private readonly DiffVerb options;
-        private readonly SchemaDiffBuilder diff;
+        private readonly CompareVerb options;
+        private readonly SchemaComparisonBuilder diff;
 
-        public DiffCommand(DiffVerb options, SchemaDiffBuilder diff)
+        public CompareCommand(CompareVerb options, SchemaComparisonBuilder diff)
         {
             this.options = options ?? throw new ArgumentNullException(nameof(options));
             this.diff = diff ?? throw new ArgumentNullException(nameof(diff));

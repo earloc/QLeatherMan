@@ -3,11 +3,11 @@ using System.Text;
 
 namespace QLeatherMan.Diff
 {
-    internal class TypeDiffBuilder
+    internal class TypeComparisonBuilder
     {
         private readonly string type;
 
-        public TypeDiffBuilder(string type)
+        public TypeComparisonBuilder(string type)
         {
             this.type = type;
         }
