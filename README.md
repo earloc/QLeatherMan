@@ -2,7 +2,7 @@
 The ~~swiss-army-knife~~ leatherman when dealing with GraphQL schemas in .NET-land.
 
 ## What is it?
-QLeatherman, or short qlman, is a dotnet core cli-utility to help deailing with common tasks when GraphQL meets .NET (Core)
+QLeatherman, or short qlman, is a dotnet core cli-utility to help deailing with common tasks when GraphQL meets .NET (Core).
 
 Main aspects are:
 - easy-to-use from the start (via dotnet-tool)
@@ -64,6 +64,12 @@ dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land
   - [ ] others?
 - [ ] provide better examples on use-cases of 'compare'
 
+
+## PullRequests welcome:
+- Fork the repoitory
+- make the changes
+- submit a pull-request
+- hope for the best ;)
 
 ## Thanks to others
 - [GraphQlClientGenerator] (MIT-license)
