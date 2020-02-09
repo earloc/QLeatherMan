@@ -65,8 +65,9 @@ dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land
 - [ ] provide better examples on use-cases of 'compare'
 
 
-## PullRequests welcome:
-- Fork the repoitory
+## Cotributions welcome:
+- file an issue
+- fork the repoitory
 - make the changes
 - submit a pull-request
 - hope for the best ;)
