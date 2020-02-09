@@ -35,12 +35,12 @@ namespace QLeatherMan.Diff
 
             foreach (var type in addedTypes)
             {
-                builder.AppendLine($"- **{type}**");
+                builder.AppendLine($"- (+)   {type}  ");
             }
 
             foreach (var type in removedTypes)
             {
-                builder.AppendLine($"- ~~{type}~~");
+                builder.AppendLine($"- (-) ~~{type}~~");
             }
 
             foreach (var type in modifiedTypes)

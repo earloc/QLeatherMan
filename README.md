@@ -7,27 +7,27 @@ QLeatherman, or short qlman, is a dotnet core cli-utility to help deailing with 
 Main aspects are:
 - easy-to-use from the start (via dotnet-tool)
 - great interop with various build-pipelines
-- OOTB generation of C#-clients given a GraphQL schemas
-- maintaining backwards-compatible GraphQL-schemas by providing automated reports of changes between two version of an API (you can of course diff two completely unrelated schemas, if that makes sense to you ^^)
+- OOTB generation of C#-clients given a GraphQL schema
+- maintaining backwards-compatible GraphQL-schemas by providing automated reports of changes between two version of an API (you can, of course, compare two completely unrelated schemas, if that makes any sense to you ^^)
 
 ### Examples
-#### generating C#-Clients
+#### Generating C#-Clients
 invoking the following command will generate a full C# client for a given schema:
 
 ```
 dotnet qlman generate https://api.spacex.land/graphql
 ```
 
-#### comparing two (verions) of a GraphQL-schema
-
-Invoking the following command will generate a report showing the current differences between the iven schemas:
-
-```
-dotnet qlman compare https://countries.trevorblades.com/
-```
-
-> As QLeatherman currently completely relies on [GraphQlClientGenerator] when generating client-classes atm, head over there for details and don´t forget to leave a 
+> As QLeatherman currently completely relies on [GraphQlClientGenerator] when generating client-classes, head over there for details and don´t forget to leave a 
 <a class="github-button" href="https://github.com/Husqvik/GraphQlClientGenerator" data-icon="octicon-star" aria-label="Star Husqvik/GraphQlClientGenerator on GitHub">Star</a> ;)
+
+#### Comparing two (verions of) GraphQL-schema(s)
+
+Invoking the following command will generate a report showing the current differences between the given schemas:
+
+```
+dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land/graphql/
+```
 
 ## ToDos
 - [ ] actually publish as dotnet-tool ;)
@@ -55,10 +55,14 @@ dotnet qlman compare https://countries.trevorblades.com/
     - [ ] added arguments
     - [ ] removed arguments
     - [ ] deprecated arguments
+  - [ ] differnces in subscrptions
+  - [ ] differnces in directives
+  - [ ] more?
 - [ ] batching support to be used by e.g. build-pipelines
-- [ ] customizable reports
+- [ ] customizable reports and formats
   - [ ] markdown
   - [ ] others?
+- [ ] provide better examples on use-cases of 'compare'
 
 
 ## Thanks to others
