@@ -30,8 +30,8 @@ dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land
 ```
 
 ## ToDos
-- [ ] actually publish as dotnet-tool ;)
-- [x] generate C#-client based on a GraphQL schema
+- [ ] publish as dotnet-tool ;)
+- [x] generate C#-client based on a given GraphQL schema
   - > currently using [GraphQlClientGenerator]
 - [x] generate difference report given two GraphQL schemas
   - [ ] support local files for analyzing evolvement of remote schemas
@@ -51,12 +51,12 @@ dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land
     - [ ] added arguments
     - [ ] removed arguments
     - [ ] deprecated arguments
-  - [ ] differnces in mutations
+  - [ ] differences in mutations
     - [ ] added arguments
     - [ ] removed arguments
     - [ ] deprecated arguments
-  - [ ] differnces in subscrptions
-  - [ ] differnces in directives
+  - [ ] differences in subscriptions
+  - [ ] differences in directives
   - [ ] more?
 - [ ] batching support to be used by e.g. build-pipelines
 - [ ] customizable reports and formats
@@ -67,7 +67,7 @@ dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land
 
 ## Cotributions welcome:
 - file an issue
-- fork the repoitory
+- fork the repository
 - make the changes
 - submit a pull-request
 - hope for the best ;)
