@@ -16,6 +16,8 @@ namespace QLeatherMan.Diff
 
     internal class CompareCommand : ICommand
     {
+        private const string MyFileExtension = ".qlman.json";
+
         private readonly CompareVerb options;
         private readonly SchemaComparisonBuilder diff;
 
@@ -41,14 +43,14 @@ namespace QLeatherMan.Diff
             var left = schemas.First();
             var right = schemas.Last();
 
-            File.WriteAllText("left.json", JsonConvert.SerializeObject(left, SerializerSettings));
-            File.WriteAllText("right.json", JsonConvert.SerializeObject(right, SerializerSettings));
+            File.WriteAllText($"left.{MyFileExtension}", JsonConvert.SerializeObject(left, SerializerSettings));
+            File.WriteAllText($"right.{MyFileExtension}", JsonConvert.SerializeObject(right, SerializerSettings));
 
             ShowDiff(left, right);
 
         }
 
-        private async Task<GraphQlSchema> ReadSchemaAsync(string? schemaUriOrPath)
+        private Task<GraphQlSchema> ReadSchemaAsync(string? schemaUriOrPath)
         {
             if (schemaUriOrPath is null)
                 throw new ArgumentNullException(nameof(schemaUriOrPath));
@@ -57,16 +59,21 @@ namespace QLeatherMan.Diff
 
             if (file.Exists)
             {
-                return await FromFile(file);
+                return Task.FromResult(FromFile(file));
             }
 
-            return await GraphQlGenerator.RetrieveSchema(schemaUriOrPath).ConfigureAwait(false);
+            return GraphQlGenerator.RetrieveSchema(schemaUriOrPath);
         }
 
-        private Task<GraphQlSchema> FromFile(FileInfo file)
+        private static GraphQlSchema FromFile(FileInfo file)
         {
             var json = File.ReadAllText(file.FullName);
-            return Task.FromResult(JsonConvert.DeserializeObject<GraphQlSchema>(json));
+
+            if (file.FullName.EndsWith(MyFileExtension, StringComparison.OrdinalIgnoreCase)) 
+            {
+                return JsonConvert.DeserializeObject<GraphQlSchema>(json);
+            }
+            return GraphQlGenerator.DeserializeGraphQlSchema(json);
         }
 
         private void ShowDiff(GraphQlSchema left, GraphQlSchema right)
