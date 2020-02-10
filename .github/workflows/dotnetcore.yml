@@ -15,3 +15,5 @@ jobs:
         dotnet-version: 3.1.101
     - name: Build with dotnet
       run: dotnet build  src/QLeatherMan.sln --configuration Release
+     - name: publish to nuget
+      run: dotnet nuget push src/bin/nupkg/*.nupkg --api-key ${{NUGET_APIKEY}} --skip-duplicate
