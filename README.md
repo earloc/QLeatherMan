@@ -4,7 +4,7 @@ The ~~swiss-army-knife~~ multi-tool of choice when dealing with GraphQL schemas 
 ![.NET Core](https://github.com/earloc/QLeatherMan/workflows/.NET%20Core/badge.svg)
 
 ## What is it?
-QLeatherman, or short qlman, is a dotnet core cli-utility to help deailing with common tasks when GraphQL meets .NET (Core).
+QLeatherman, or short qlman, is a dotnet core command-line-interface to help deailing with common tasks when GraphQL meets .NET (Core), especially useful for authors of GraphQl-schemas.
 
 Main aspects are:
 - easy-to-use from the start (via dotnet-tool)
@@ -21,9 +21,12 @@ Run the follwoing command to download QLeatherman as a global dotnet-tool
 dotnet tool install --global QLeatherman
 ```
 
-### Examples
-#### Generating C#-Clients
-invoking the following command will generate a full C# client for a given schema:
+### Verbs
+
+QleatherMan uses a verb-style CLI, similar to git or other popular CLIs out there
+
+#### generate
+Invoking the _generate_ command will yield a full C# client for a given schema:
 
 ```
 dotnet qlman generate https://swapi.apis.guru/
@@ -32,25 +35,45 @@ dotnet qlman generate https://swapi.apis.guru/
 > As QLeatherman currently completely relies on [GraphQlClientGenerator] when generating client-classes, head over there for details and don´t forget to leave a 
 <a class="github-button" href="https://github.com/Husqvik/GraphQlClientGenerator" data-icon="octicon-star" aria-label="Star Husqvik/GraphQlClientGenerator on GitHub">Star</a> ;)
 
-#### Comparing two (verions of) GraphQL-schema(s)
+#### compare
 
-Invoking the following command will generate a report showing the current differences between the given schemas:
+The _compare_-command will generate a report showing the current differences between two given schemas.
+
 
 ```
 dotnet qlman compare https://swapi.apis.guru/ https://api.spacex.land/graphql/
 ```
+
 > the sample comparison above does not actually make any sense, but showcases the output of differing schemas
 
-During comparison, the used schemas are cached locally in **left**.json and **rigt**.json, respectiviley.
+During comparison, the used schemas are cached locally in **left**.qlman.json and **rigt**.qlman.json, respectiviley.
 
-To use these local cached version, run the following command
+To use one of these cached version, just replace one of the uris in the compare-command
 
 ```
-dotnet qlman compare left.json https://swapi.apis.guru/
+dotnet qlman compare left.qlman.json https://swapi.apis.guru/
 ```
 
-to compare the local file **left.json** with the remote-schema **https://swapi.apis.guru/**.
+> this will compare the local file **left.qlman.json** with the remote-schema **https://swapi.apis.guru/**.
+
 > Urls and files can be mixed and matched as needed.
+
+> files ending with qlman.json are treated as if QLeatherMan itself serialized the content. For any other extension, QLeatherMan will fall back to use [GraphQlGenerator]'s implementation.
+
+#### examples
+
+Based on the widely used reference-api based on star-wars, let´s consider we have the schemas of two version of the same API.
+> the below shown differences are not reflecting actual evolvement of the api, but are prepared to better showcase the use of the compare-command
+> we simulate evolvement by removing all 'Planet'-related types, mutations, etc. from v1, as well as some fields on other types to simulate a hard breaking-change in API-surface.
+> you can find the used schemas in the asset-folder within this repo
+
+the output of 
+```
+dotnet compare swapi.apis.guru.v1.qlman.json swapi.apis.guru.v2.qlman.json -o diff.md
+```
+
+would result in [this sample-report]
+
 
 
 ## ToDos
@@ -106,3 +129,4 @@ following is a list of pending features, ordered per context, not per priority
 
 [GraphQlClientGenerator]:https://github.com/Husqvik/GraphQlClientGenerator
 [CommandLineParser]:https://github.com/commandlineparser/commandline
+[this sample-report]:assets/swapi.diff.md
