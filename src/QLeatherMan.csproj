@@ -6,7 +6,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-qlman</ToolCommandName>
     <PackageOutputPath>./bin/nupkg</PackageOutputPath>
-    <Version>0.2.0</Version>
+    <Version>0.2.1</Version>
     <AssemblyVersion>0.0.2.0</AssemblyVersion>
     <FileVersion>0.0.2.0</FileVersion>
     <AssemblyName>dotnet-qlman</AssemblyName>
@@ -18,9 +18,9 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/earloc/QLeatherMan</PackageProjectUrl>
     <RepositoryUrl>https://github.com/earloc/QLeatherMan</RepositoryUrl>
-    <PackageTags>GraphQL C# Client compare diff</PackageTags>
+    <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <PackageReleaseNotes>0.1.0 - initial release
-    0.2.0 - add support for comparin local schemas</PackageReleaseNotes>
+0.2.0 - add support for comparin local schemas</PackageReleaseNotes>
     <RepositoryType>github</RepositoryType>
     <PackageIcon>GraphQL.png</PackageIcon>
     <PackageIconUrl />
