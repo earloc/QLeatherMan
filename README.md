@@ -41,6 +41,18 @@ dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land
 ```
 > the sample comparison above does not actually make any sense, but showcases the output of differing schemas
 
+During comparison, the used schemas are cached locally in **left**.json and **rigt**.json, respectiviley.
+
+To use these local cached version, run the following command
+
+```
+dotnet qlman compare left.json https://api.spacex.land/graphql/
+```
+
+to compare the local file **left.json** with the remote-schema **https://api.spacex.land/graphql/**.
+> Urls and files can be mixed and matched as needed.
+
+
 ## ToDos
 following is a list of pending features, ordered per context, not per priority 
 
