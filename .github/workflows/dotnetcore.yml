@@ -16,4 +16,4 @@ jobs:
     - name: Build with dotnet
       run: dotnet build  src/QLeatherMan.sln --configuration Release
     - name: publish to nuget
-      run: dotnet nuget push src/bin/nupkg/*.nupkg --api-key ${{secrets.NUGET_APIKEY}} --skip-duplicate
+      run: dotnet nuget push src/bin/nupkg/*.nupkg --api-key ${{secrets.NUGET_APIKEY}} --skip-duplicate --source https://api.nuget.org/v3/index.json
