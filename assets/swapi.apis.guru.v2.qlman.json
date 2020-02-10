@@ -87,8 +87,8 @@
                         "kind": "OBJECT",
                         "name": "Film"
                     },
-                    "isDeprecated": false,
-                    "deprecationReason": null,
+                    "isDeprecated": true,
+                    "deprecationReason": "just to showcase the result when comparing two schemas",
                     "name": "film",
                     "description": null
                 },
@@ -188,16 +188,6 @@
                             },
                             "defaultValue": null,
                             "name": "after",
-                            "description": null
-                        },
-                        {
-                            "type": {
-                                "ofType": null,
-                                "kind": "SCALAR",
-                                "name": "Int"
-                            },
-                            "defaultValue": null,
-                            "name": "first",
                             "description": null
                         },
                         {
@@ -1352,7 +1342,7 @@
                     },
                     "isDeprecated": false,
                     "deprecationReason": null,
-                    "name": "name",
+                    "name": "Description_fka_Name",
                     "description": "The name of this species."
                 },
                 {
