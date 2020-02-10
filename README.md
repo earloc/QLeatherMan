@@ -115,7 +115,7 @@ would result in [this sample-report]
 following is a list of pending features, ordered per context, not per priority 
 
 - [x] publish as dotnet-tool ;)
-  - [ ] automate publishing
+  - [x] automate publishing
 - [x] generate C#-client based on a given GraphQL schema
   - > currently using [GraphQlClientGenerator]
 - [x] generate difference report given two GraphQL schemas
