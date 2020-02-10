@@ -23,7 +23,7 @@ namespace QLeatherMan.Diff
             return builder;
         }
 
-        public string ToMarkdown(Uri? leftUri, Uri? rightUri)
+        public string ToMarkdown(string? leftUri, string? rightUri)
         {
             var builder = new StringBuilder();
             builder.AppendLine($"# Differences between");

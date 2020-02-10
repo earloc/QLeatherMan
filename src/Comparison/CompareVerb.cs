@@ -7,10 +7,10 @@ namespace QLeatherMan.Diff
     public class CompareVerb
     {
         [Value(0, Required = true, HelpText = "Uri of the left hand side for the diff-comparison")]
-        public Uri? LeftUri { get; set; }
+        public string? Left { get; set; }
 
         [Value(1, Required = true, HelpText = "Uri of the right hand side for the diff-comparison")]
-        public Uri? RightUri { get; set; }
+        public string? Right { get; set; }
 
         [Option('o', Required = false, HelpText = "Path to file for generaten comparison report in Markdown-Format")]
         public string? ReportMarkdownPath { get; set; }

@@ -1,6 +1,7 @@
 ﻿using GraphQlClientGenerator;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace QLeatherMan.Diff
         public async Task RunAsync()
         {
             var schemas = await Task.WhenAll(
-                ReadSchemaAsync(options.LeftUri),
-                ReadSchemaAsync(options.RightUri)
+                ReadSchemaAsync(options.Left),
+                ReadSchemaAsync(options.Right)
             ).ConfigureAwait(false);
 
             var left = schemas.First();
@@ -47,8 +48,26 @@ namespace QLeatherMan.Diff
 
         }
 
-        private Task<GraphQlSchema> ReadSchemaAsync(Uri? schemaUri)
-            => GraphQlGenerator.RetrieveSchema(schemaUri?.AbsoluteUri);
+        private async Task<GraphQlSchema> ReadSchemaAsync(string? schemaUriOrPath)
+        {
+            if (schemaUriOrPath is null)
+                throw new ArgumentNullException(nameof(schemaUriOrPath));
+
+            var file = new FileInfo(schemaUriOrPath);
+
+            if (file.Exists)
+            {
+                return await FromFile(file);
+            }
+
+            return await GraphQlGenerator.RetrieveSchema(schemaUriOrPath).ConfigureAwait(false);
+        }
+
+        private Task<GraphQlSchema> FromFile(FileInfo file)
+        {
+            var json = File.ReadAllText(file.FullName);
+            return Task.FromResult(JsonConvert.DeserializeObject<GraphQlSchema>(json));
+        }
 
         private void ShowDiff(GraphQlSchema left, GraphQlSchema right)
         {
@@ -58,7 +77,7 @@ namespace QLeatherMan.Diff
             CompareTypes(leftTypes, rightTypes);
             CompareFields(leftTypes, rightTypes);
 
-            var comparisonReport = diff.ToMarkdown(options.LeftUri, options.RightUri);
+            var comparisonReport = diff.ToMarkdown(options.Left, options.Right);
 
             if (!(options.ReportMarkdownPath is null))
             {
