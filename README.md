@@ -26,7 +26,7 @@ dotnet tool install --global QLeatherman
 invoking the following command will generate a full C# client for a given schema:
 
 ```
-dotnet qlman generate https://api.spacex.land/graphql
+dotnet qlman generate https://swapi.apis.guru/
 ```
 
 > As QLeatherman currently completely relies on [GraphQlClientGenerator] when generating client-classes, head over there for details and don´t forget to leave a 
@@ -37,7 +37,7 @@ dotnet qlman generate https://api.spacex.land/graphql
 Invoking the following command will generate a report showing the current differences between the given schemas:
 
 ```
-dotnet qlman compare https://countries.trevorblades.com/ https://api.spacex.land/graphql/
+dotnet qlman compare https://swapi.apis.guru/ https://api.spacex.land/graphql/
 ```
 > the sample comparison above does not actually make any sense, but showcases the output of differing schemas
 
@@ -46,10 +46,10 @@ During comparison, the used schemas are cached locally in **left**.json and **ri
 To use these local cached version, run the following command
 
 ```
-dotnet qlman compare left.json https://api.spacex.land/graphql/
+dotnet qlman compare left.json https://swapi.apis.guru/
 ```
 
-to compare the local file **left.json** with the remote-schema **https://api.spacex.land/graphql/**.
+to compare the local file **left.json** with the remote-schema **https://swapi.apis.guru/**.
 > Urls and files can be mixed and matched as needed.
 
 
@@ -61,7 +61,7 @@ following is a list of pending features, ordered per context, not per priority
 - [x] generate C#-client based on a given GraphQL schema
   - > currently using [GraphQlClientGenerator]
 - [x] generate difference report given two GraphQL schemas
-  - [ ] support local files for analyzing evolvement of remote schemas
+  - [x] support local files for analyzing evolvement of remote schemas
   - [x] show differences in types
     - [x] added types
     - [x] removed types
