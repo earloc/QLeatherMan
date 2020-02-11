@@ -21,7 +21,8 @@
     <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <PackageReleaseNotes>0.1.0 - initial release
 0.2.0 - add support for comparing local schemas
-0.3.0 - write message to stderr when 'compare' indicates introduction of breaking-changes</PackageReleaseNotes>
+0.3.0 - write message to stderr when 'compare' indicates introduction of breaking-changes
+      - support invoking 'generate' with a local file</PackageReleaseNotes>
     <RepositoryType>github</RepositoryType>
     <PackageIcon>GraphQL.png</PackageIcon>
     <PackageIconUrl />

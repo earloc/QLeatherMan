@@ -11,14 +11,16 @@ namespace QLeatherMan.Generate
     internal class GenerateCommand : ICommand
     {
         private readonly GenerateVerb options;
+        private readonly SchemaConverter converter;
 
-        public GenerateCommand(GenerateVerb options)
+        public GenerateCommand(GenerateVerb options, SchemaConverter converter)
         {
             this.options = options ?? throw new ArgumentNullException(nameof(options));
+            this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
         public async Task RunAsync()
         {
-            var schema = await GraphQlGenerator.RetrieveSchema(options.Source).ConfigureAwait(false);
+            var schema = await converter.ReadAsync(options.Source).ConfigureAwait(false);
             var content = GraphQlGenerator.GenerateFullClientCSharpFile(schema, options.Namespace);
             File.WriteAllText(options.DestinationFile, content);
         }

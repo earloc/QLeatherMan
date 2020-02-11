@@ -16,65 +16,36 @@ namespace QLeatherMan.Diff
 
     internal class CompareCommand : ICommand
     {
-        private const string MyFileExtension = ".qlman.json";
-
         private readonly CompareVerb options;
         private readonly SchemaComparisonBuilder diff;
+        private readonly SchemaConverter converter;
 
-        public CompareCommand(CompareVerb options, SchemaComparisonBuilder diff)
+        public CompareCommand(CompareVerb options, SchemaComparisonBuilder diff, SchemaConverter converter)
         {
             this.options = options ?? throw new ArgumentNullException(nameof(options));
             this.diff = diff ?? throw new ArgumentNullException(nameof(diff));
+            this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
 
-        internal static readonly JsonSerializerSettings SerializerSettings =
-            new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Converters = { new StringEnumConverter() }
-            };
+        
         public async Task RunAsync()
         {
             var schemas = await Task.WhenAll(
-                ReadSchemaAsync(options.Left),
-                ReadSchemaAsync(options.Right)
+                converter.ReadAsync(options.Left),
+                converter.ReadAsync(options.Right)
             ).ConfigureAwait(false);
 
             var left = schemas.First();
             var right = schemas.Last();
 
-            File.WriteAllText($"left.{MyFileExtension}", JsonConvert.SerializeObject(left, SerializerSettings));
-            File.WriteAllText($"right.{MyFileExtension}", JsonConvert.SerializeObject(right, SerializerSettings));
+            converter.WriteFileAsync("left", left);
+            converter.WriteFileAsync("riht", right);
 
             ShowDiff(left, right);
 
         }
 
-        private Task<GraphQlSchema> ReadSchemaAsync(string? schemaUriOrPath)
-        {
-            if (schemaUriOrPath is null)
-                throw new ArgumentNullException(nameof(schemaUriOrPath));
-
-            var file = new FileInfo(schemaUriOrPath);
-
-            if (file.Exists)
-            {
-                return Task.FromResult(FromFile(file));
-            }
-
-            return GraphQlGenerator.RetrieveSchema(schemaUriOrPath);
-        }
-
-        private static GraphQlSchema FromFile(FileInfo file)
-        {
-            var json = File.ReadAllText(file.FullName);
-
-            if (file.FullName.EndsWith(MyFileExtension, StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonConvert.DeserializeObject<GraphQlSchema>(json);
-            }
-            return GraphQlGenerator.DeserializeGraphQlSchema(json);
-        }
+        
 
         private void ShowDiff(GraphQlSchema left, GraphQlSchema right)
         {
