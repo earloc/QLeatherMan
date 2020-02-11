@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 
 namespace QLeatherMan.Diff
@@ -15,6 +16,11 @@ namespace QLeatherMan.Diff
         internal void Added(string type) => addedTypes.Add(type);
 
         private readonly IList<TypeComparisonBuilder> modifiedTypes = new List<TypeComparisonBuilder>();
+
+        public bool HasBreakingChanges =>
+            removedTypes.Any() ||
+            modifiedTypes.Any(x => x.HasBreakingChanges);
+
         internal TypeComparisonBuilder Modified(string type)
         {
             var builder = new TypeComparisonBuilder(type);

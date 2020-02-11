@@ -120,6 +120,7 @@ following is a list of pending features, ordered per context, not per priority
   - > currently using [GraphQlClientGenerator]
 - [x] generate difference report given two GraphQL schemas
   - [x] support local files for analyzing evolvement of remote schemas
+  - [x] write message to stderr when comparison indicates a breaking-change
   - [x] show differences in types
     - [x] added types
     - [x] removed types

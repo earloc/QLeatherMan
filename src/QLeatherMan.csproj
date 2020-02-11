@@ -20,7 +20,8 @@
     <RepositoryUrl>https://github.com/earloc/QLeatherMan</RepositoryUrl>
     <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <PackageReleaseNotes>0.1.0 - initial release
-0.2.0 - add support for comparing local schemas</PackageReleaseNotes>
+0.2.0 - add support for comparing local schemas
+0.3.0 - write message to stderr when 'compare' indicates introduction of breaking-changes</PackageReleaseNotes>
     <RepositoryType>github</RepositoryType>
     <PackageIcon>GraphQL.png</PackageIcon>
     <PackageIconUrl />
@@ -41,10 +42,6 @@
 
   <ItemGroup>
     <None Include="..\assets\GraphQL.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-    <None Include="..\LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

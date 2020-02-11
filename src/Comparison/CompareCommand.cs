@@ -69,7 +69,7 @@ namespace QLeatherMan.Diff
         {
             var json = File.ReadAllText(file.FullName);
 
-            if (file.FullName.EndsWith(MyFileExtension, StringComparison.OrdinalIgnoreCase)) 
+            if (file.FullName.EndsWith(MyFileExtension, StringComparison.OrdinalIgnoreCase))
             {
                 return JsonConvert.DeserializeObject<GraphQlSchema>(json);
             }
@@ -91,8 +91,14 @@ namespace QLeatherMan.Diff
                 File.WriteAllText(options.ReportMarkdownPath, comparisonReport);
             }
 
+            if (diff.HasBreakingChanges)
+            {
+                Console.Error.WriteLine($"looks like {options.Right} introduces breaking-changes from {options.Left}");
+            }
             if (!options.Silent)
+            {
                 Console.WriteLine(comparisonReport);
+            }
         }
 
         private void CompareTypes(Dictionary<string, GraphQlType> leftTypes, Dictionary<string, GraphQlType> rightTypes)
@@ -132,10 +138,10 @@ namespace QLeatherMan.Diff
 
                 var modified = diff.Modified(right.Key);
 
-                modified.Removed(removedFields.Select(x => 
+                modified.Removed(removedFields.Select(x =>
                     (
-                        name: x.Name, 
-                        type: x.Type.Name ?? x.Type.OfType.Name, 
+                        name: x.Name,
+                        type: x.Type.Name ?? x.Type.OfType.Name,
                         nonNull: x.Type.Kind == GraphQlTypeKind.NonNull
                     )
                 ).ToArray());
