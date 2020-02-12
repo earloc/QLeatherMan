@@ -1,0 +1,34 @@
+@startuml ContainerContext
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Context.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Component.puml
+
+System_Boundary(QLMAN, "QLeatherMan"){
+    Component(qlman, "QLeatherMan", "assembly / .NET Standard 2.0")
+    
+    Component(qlman_compare, "QLeatherMan.Compare", "assembly / .NET Standard 2.0", "compares two GraphQl-Schemas / Versions")
+            Rel(qlman_compare, qlman, "references")
+
+    Component(qlman_compare_DI, "QLeatherMan.Compare.Microsoft.Extensions.DependencyInjection", "assembly / .NET Standard 2.0", "assembly containing IoC registrations / configurations for QLeatherMan.Compare when using Microsoft.Extensions.DependencyInjection")
+            Rel(qlman_compare_DI, qlman_compare, "configures DI of")
+
+    Component(qlman_generate, "QLeatherMan.Generate", "assembly / .NET Standard 2.0", "generates C#-Clients for GraphQL-Schemas")
+            Rel(qlman_generate, qlman, "references")
+
+    Component(qlman_generate_DI, "QLeatherMan.Generate.Microsoft.Extensions.DependencyInjection", "assembly / .NET Standard 2.0", "assembly containing IoC registrations / configurations for QLeatherMan.Generate when using Microsoft.Extensions.DependencyInjection")
+            Rel(qlman_generate_DI, qlman_generate, "references")
+
+    Container(dotnet_qlman, "dotnet-qlman", "CLI / .NET Core 3.1", "A dotnet global tool for performing manual or scripted tasks during explorative sessions or build-automation")
+        Rel(dotnet_qlman, qlman_compare_DI, "references")
+        Rel(dotnet_qlman, qlman_generate_DI, "references")
+
+    Container(webapp_qlman, "WebApp*", "Blazor App / .NET Core 3.1", "A simple demo-webapp showcasing QLeatherMan's capabilities")
+        Rel(webapp_qlman, qlman_compare_DI, "references")
+        Rel(webapp_qlman, qlman_generate_DI, "references")
+
+    Container(webapi_qlman, "WebApi*", "MVC + OData + GraphQl / .NET Core 3.1", "An archive of selected GraphQL-schemas, enabling historical comparison, etc.")
+        Rel(webapp_qlman, webapi_qlman, "loads data from", "HTTP / Json")
+}
+
+@enduml
