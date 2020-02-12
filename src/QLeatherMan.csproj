@@ -42,10 +42,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\assets\GraphQL.png">
+    <None Include="..\assets\GraphQL.png" Link="_\GraphQL.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="..\LICENSE.md" Link="_\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="_\" />
   </ItemGroup>
 
 </Project>

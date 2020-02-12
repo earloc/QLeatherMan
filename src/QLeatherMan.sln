@@ -7,7 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLeatherMan", "QLeatherMan.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "etc", "etc", "{997ADCB0-21BD-435C-B2B3-F0825630550E}"
 	ProjectSection(SolutionItems) = preProject
-		..\LICENSE.md = ..\LICENSE.md
 		..\README.md = ..\README.md
 		..\assets\swapi.apis.guru.v1.qlman.json = ..\assets\swapi.apis.guru.v1.qlman.json
 		..\assets\swapi.apis.guru.v2.qlman.json = ..\assets\swapi.apis.guru.v2.qlman.json
