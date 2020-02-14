@@ -27,7 +27,7 @@ namespace QLeatherMan
                     services.AddSingleton<ICommand, CompareCommand>();
                 })
                 .WithNotParsed(errors =>
-                    services.AddSingleton(new ShowErrorCommand(errors))
+                    services.AddSingleton<ICommand>(_ => new ShowErrorCommand(errors))
                 )
             ;
 

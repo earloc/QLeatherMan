@@ -29,6 +29,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="_\**" />
+    <EmbeddedResource Remove="_\**" />
+    <None Remove="_\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
     <PackageReference Include="GraphQlClientGenerator" Version="0.4.6" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
@@ -42,18 +48,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\assets\GraphQL.png" Link="_\GraphQL.png">
+    <None Include="..\assets\GraphQL.png" Link="GraphQL.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\LICENSE.md" Link="_\LICENSE.md">
+    <None Include="..\LICENSE.md" Link="LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="_\" />
   </ItemGroup>
 
 </Project>
