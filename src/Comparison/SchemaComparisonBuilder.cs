@@ -36,6 +36,12 @@ namespace QLeatherMan.Diff
             builder.AppendLine($"- {leftUri}");
             builder.AppendLine($"- {rightUri}");
 
+            if (!HasChanges())
+            {
+                builder.AppendLine("looking good, no changes detected");
+                return builder.ToString();
+            }
+
             builder.AppendLine($@"## legend");
             builder.AppendLine($"- (+) ->   addition");
             builder.AppendLine($"- (-) -> ~~removal~~");
@@ -64,5 +70,8 @@ namespace QLeatherMan.Diff
 
             return builder.ToString();
         }
+
+        private bool HasChanges() 
+            => addedTypes.Any() || removedTypes.Any() || modifiedTypes.Any();
     }
 }
