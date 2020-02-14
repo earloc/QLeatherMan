@@ -26,14 +26,14 @@ namespace QLeatherMan
                     services.AddSingleton(options);
                     services.AddSingleton<ICommand, CompareCommand>();
                 })
-                .WithNotParsed(errors =>
-                    services.AddSingleton<ICommand>(_ => new ShowErrorCommand(errors))
-                )
             ;
 
             var provider = services.BuildServiceProvider();
 
-            var command = provider.GetRequiredService<ICommand>();
+            var command = provider.GetService<ICommand>();
+
+            if (command is null)
+                return;
 
             await command.RunAsync().ConfigureAwait(false);
         }
