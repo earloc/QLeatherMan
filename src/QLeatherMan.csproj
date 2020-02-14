@@ -24,7 +24,9 @@
 0.3.0 - write message to stderr when 'compare' indicates introduction of breaking-changes
       - support invoking 'generate' with a local file
 0.3.1 - fix error message when commandline could not be parsed
-      - fix errror in 'compare' preventing actual comparison to happen</PackageReleaseNotes>
+      - fix errror in 'compare' preventing actual comparison to happen
+0.3.2 - optimize output in case of no changes    
+    </PackageReleaseNotes>
     <RepositoryType>github</RepositoryType>
     <PackageIcon>GraphQL.png</PackageIcon>
     <PackageIconUrl />
