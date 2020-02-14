@@ -16,6 +16,7 @@ namespace QLeatherMan
             services.AddSingleton<SchemaConverter>();
 
             var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb>(args);
+
             result
                 .WithParsed<GenerateVerb>(options =>
                 {
