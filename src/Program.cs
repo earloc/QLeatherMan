@@ -12,7 +12,8 @@ namespace QLeatherMan
         {
             var services = new ServiceCollection();
 
-            services.AddScoped<SchemaComparisonBuilder>();
+            services.AddSingleton<SchemaComparisonBuilder>();
+            services.AddSingleton<SchemaConverter>();
 
             var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb>(args);
             result

@@ -46,7 +46,6 @@ namespace QLeatherMan.Diff
         }
 
         
-
         private void ShowDiff(GraphQlSchema left, GraphQlSchema right)
         {
             var leftTypes = left.Types.ToDictionary(x => x.Name);
@@ -66,6 +65,7 @@ namespace QLeatherMan.Diff
             {
                 Console.Error.WriteLine($"looks like {options.Right} introduces breaking-changes from {options.Left}");
             }
+
             if (!options.Silent)
             {
                 Console.WriteLine(comparisonReport);
