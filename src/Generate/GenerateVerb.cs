@@ -13,5 +13,8 @@ namespace QLeatherMan.Generate
 
         [Value(3, Required = false, Default = "GraphQlClientGenerator.Generated", HelpText = "Namespace used for generated types")]
         public string Namespace { get; set; } = "GraphQlClientGenerator.Generated";
+
+        [Option('d', Default = false, HelpText = "generate types and members even when they are deprecated in the schema")]
+        public bool GenerateDeprecatedTypes { get; set; }
     }
 }
