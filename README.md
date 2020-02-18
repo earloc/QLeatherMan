@@ -77,7 +77,7 @@ the config-command generates a sample configuration '.qlman'-file in the current
 dotnet qlman config
 ```
 
-The content of this file resembles the available commandline-switches and can be used to automate the execution ov the varios commands (excluding 'config' itself ;) )
+The content of this file resembles the available commandline-switches and can be used to automate the execution of the various commands (excluding 'config' itself ;) )
 
 ```
 
