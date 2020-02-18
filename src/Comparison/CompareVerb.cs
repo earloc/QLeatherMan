@@ -1,11 +1,13 @@
 ﻿using CommandLine;
-using System;
 
 namespace QLeatherMan.Diff
 {
-    [Verb("compare", HelpText = "performs a difference-analysis of two GraphQL-schemas")]
+    [Verb(name, HelpText = "performs a difference-analysis of two GraphQL-schemas")]
     public class CompareVerb
     {
+        private const string name = "compare";
+        internal readonly string Name = name;
+
         [Value(0, Required = true, HelpText = "Uri of the left hand side for the diff-comparison")]
         public string? Left { get; set; }
 

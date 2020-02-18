@@ -2,9 +2,12 @@
 
 namespace QLeatherMan.Generate
 {
-    [Verb("generate", HelpText = "generates a C# client")]
+    [Verb(name, HelpText = "generates a C# client")]
     public class GenerateVerb
     {
+        private const string name = "generate";
+        internal readonly string Name = name;
+
         [Value(0, Required = false, Default = "https://api.spacex.land/graphql/", HelpText = "Uri of the GraphQL endpoint used to generate the client-code")]
         public string? Source { get; set; }
 
