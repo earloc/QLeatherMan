@@ -2,7 +2,7 @@
 
 namespace QLeatherMan
 {
-    internal interface ICommand
+    public interface ICommand
     {
         Task RunAsync();
     }
