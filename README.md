@@ -69,6 +69,43 @@ dotnet qlman compare left.qlman.json https://swapi.apis.guru/
 
 > files ending with qlman.json are treated as if QLeatherMan itself serialized the content. For any other extension, QLeatherMan will fall back to use [GraphQlGenerator]'s implementation.
 
+#### config
+
+the config-command generates a sample configuration '.qlman'-file in the current directory.
+
+```
+dotnet qlman config
+```
+
+The content of this file resembles the available commandline-switches and can be used to automate the execution ov the varios commands (excluding 'config' itself ;) )
+
+```
+
+{
+  "Generate": {
+    "Source": "https://swapi.apis.guru",
+    "DestinationFile": "swapi.generated.cs",
+    "Namespace": "swapi.Generated",
+    "GenerateDeprecatedTypes": true
+  },
+  "Compare": {
+    "Left": "https://swapi.apis.guru",
+    "Right": "https://swapi.apis.guru",
+    "ReportMarkdownPath": swapi.md,
+    "Silent": false
+  }
+}
+
+```
+
+invoking 
+```
+dotnet qlman
+```
+
+without any particular verb will execute the commands defined in the '.qlman'-config
+
+
 #### examples
 
 Based on the widely used reference-api based on star-wars, let´s consider we have the schemas of two version of the same API.

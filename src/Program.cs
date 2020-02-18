@@ -2,8 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using QLeatherMan.Diff;
 using QLeatherMan.Generate;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace QLeatherMan
@@ -22,7 +25,7 @@ namespace QLeatherMan
                 .Add<GenerateCommand>()
             );
 
-            var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb>(args);
+            var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb, ConfigVerb>(args);
             var invokedVerbs = new List<string>();
 
             result
@@ -36,13 +39,21 @@ namespace QLeatherMan
                     services.AddSingleton(options);
                     invokedVerbs.Add(options.Name);
                 })
-                //.WithNotParsed(errors =>
-                //{
-                //    if (errors.FirstOrDefault()?.Tag == ErrorType.NoVerbSelectedError)
-                //    {
-                //        var config = TryReadConfig()
-                //    }
-                //});
+                .WithParsed<ConfigVerb>(options =>
+                {
+                    services.AddSingleton(options);
+                    invokedVerbs.Add(options.Name);
+                })
+                .WithNotParsed(errors =>
+                {
+                    if (errors.FirstOrDefault()?.Tag != ErrorType.NoVerbSelectedError)
+                    {
+                        return;
+                    }
+                    var verbs = ReadConfig(services);
+                    if (verbs != null)
+                        invokedVerbs.AddRange(verbs);
+                })
             ;
 
             var provider = services.BuildServiceProvider();
@@ -55,5 +66,41 @@ namespace QLeatherMan
                 await command.RunAsync().ConfigureAwait(false);
             }
         }
+
+        private static IEnumerable<string> ReadConfig(IServiceCollection services)
+        {
+
+            var configFile = new FileInfo(".qlman");
+
+            if (!configFile.Exists)
+            {
+                return Enumerable.Empty<string>();
+            }
+
+            var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile.FullName));
+
+            var verbs = new List<string>();
+
+            if (config.Generate != null)
+            {
+                services.AddSingleton(config.Generate);
+                verbs.Add(config.Generate.Name);
+            }
+
+            if (config.Compare != null)
+            {
+                services.AddSingleton(config.Compare);
+                verbs.Add(config.Compare.Name);
+            }
+
+            return verbs;
+        }
+    }
+
+
+    public class Config
+    {
+        public GenerateVerb Generate { get; set; }
+        public CompareVerb Compare { get; set; }
     }
 }
