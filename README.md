@@ -23,7 +23,8 @@ dotnet tool install --global QLeatherman
 
 ### Verbs
 
-QleatherMan uses a verb-style CLI, similar to git or other popular CLIs out there
+QleatherMan uses a verb-style CLI, similar to git or other popular CLIs out there.
+To show some help about the possible verbs and it´s parameters, just ommit any parameters
 
 #### generate
 Invoking the _generate_ command will yield a full C# client for a given schema:
@@ -34,6 +35,14 @@ dotnet qlman generate https://swapi.apis.guru/
 
 > As QLeatherman currently completely relies on [GraphQlClientGenerator] when generating client-classes, head over there for details and don´t forget to leave a 
 <a class="github-button" href="https://github.com/Husqvik/GraphQlClientGenerator" data-icon="octicon-star" aria-label="Star Husqvik/GraphQlClientGenerator on GitHub">Star</a> ;)
+
+
+per default, deprecated elements are not subject to generation of C#-pendants
+to enable generation of deprecated elements, supply the `-d` switch:
+
+```
+dotnet qlman generate https://swapi.apis.guru/ -d
+```
 
 #### compare
 

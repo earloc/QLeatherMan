@@ -2,7 +2,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace QLeatherMan.Generate
@@ -20,6 +19,8 @@ namespace QLeatherMan.Generate
         }
         public async Task RunAsync()
         {
+            GraphQlGeneratorConfiguration.IncludeDeprecatedFields = options.GenerateDeprecatedTypes;
+
             var schema = await converter.ReadAsync(options.Source).ConfigureAwait(false);
             var content = GraphQlGenerator.GenerateFullClientCSharpFile(schema, options.Namespace);
             File.WriteAllText(options.DestinationFile, content);
