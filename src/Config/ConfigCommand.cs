@@ -13,11 +13,7 @@ namespace QLeatherMan.Diff
     {
         public async Task RunAsync()
         {
-            var config = new Config()
-            {
-                Generate = new GenerateVerb(),
-                Compare = new CompareVerb()
-            };
+            var config = new Config();
 
             var configFile = new FileInfo(".qlman");
             if (configFile.Exists)

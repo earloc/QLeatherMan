@@ -95,11 +95,4 @@ namespace QLeatherMan
             return verbs;
         }
     }
-
-
-    public class Config
-    {
-        public GenerateVerb Generate { get; set; }
-        public CompareVerb Compare { get; set; }
-    }
 }
