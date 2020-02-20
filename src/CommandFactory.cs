@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace QLeatherMan
 {
@@ -16,7 +15,7 @@ namespace QLeatherMan
             {
                 var type = typeof(T);
 
-                name ??= type.Name.Replace("Command", "").ToLower();
+                name ??= type.Name.Replace("Command", "", StringComparison.OrdinalIgnoreCase).ToUpperInvariant();
 
                 commands.Add(name, type);
 

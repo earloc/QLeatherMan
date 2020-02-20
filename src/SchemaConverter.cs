@@ -3,13 +3,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QLeatherMan
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "used via DependencyInjection")]
     internal class SchemaConverter
     {
         private const string MyFileExtension = ".qlman.json";
@@ -21,22 +20,22 @@ namespace QLeatherMan
                 Converters = { new StringEnumConverter() }
             };
 
-        public async Task<GraphQlSchema> ReadAsync(string? schemaUriOrPath)
+        public Task<GraphQlSchema> ReadAsync(string? schemaUriOrPath)
         {
             if (schemaUriOrPath is null)
                 throw new ArgumentNullException(nameof(schemaUriOrPath));
 
-            var schema = default(GraphQlSchema?);
+            return ReadAsyncCore(schemaUriOrPath);
+        }
 
+        private static async Task<GraphQlSchema> ReadAsyncCore(string schemaUriOrPath)
+        {
             var file = new FileInfo(schemaUriOrPath);
-            if (file.Exists)
-            {
-                schema = FromFile(file);
-            }
-            else
-            {
-                schema = await GraphQlGenerator.RetrieveSchema(schemaUriOrPath).ConfigureAwait(false);
-            }
+
+            var schema = file.Exists ? 
+                FromFile(file) : 
+                await GraphQlGenerator.RetrieveSchema(schemaUriOrPath).ConfigureAwait(false)
+            ;
 
             if (schema is null)
             {

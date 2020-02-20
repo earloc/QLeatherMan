@@ -76,7 +76,7 @@ namespace QLeatherMan
                 return Enumerable.Empty<string>();
             }
 
-            var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile.FullName));
+            var config = JsonSerializer.Deserialize<AutoRunSettings>(File.ReadAllText(configFile.FullName));
 
             var verbs = new List<string>();
 
