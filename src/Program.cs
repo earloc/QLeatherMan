@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using QLeatherMan.Diff;
 using QLeatherMan.Generate;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
