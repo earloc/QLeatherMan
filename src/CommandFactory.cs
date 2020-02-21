@@ -32,7 +32,7 @@ namespace QLeatherMan
             this.serviceProvider = serviceProvider;
         }
 
-        public ICommand Create(string name) => (ICommand)serviceProvider.GetRequiredService(options.commands[name]);
+        public ICommand Create(string name) => (ICommand)serviceProvider.GetRequiredService(options.commands[name.ToUpperInvariant()]);
     }
 }
 
