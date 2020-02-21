@@ -1,8 +1,4 @@
 ﻿using GraphQlClientGenerator;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -26,35 +22,32 @@ namespace QLeatherMan.Diff
             this.diff = diff ?? throw new ArgumentNullException(nameof(diff));
             this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
-
         
         public async Task RunAsync()
         {
             var schemas = await Task.WhenAll(
-                converter.ReadAsync(options.Left),
-                converter.ReadAsync(options.Right)
+                converter.ReadAsync(options.From),
+                converter.ReadAsync(options.To)
             ).ConfigureAwait(false);
 
-            var left = schemas.First();
-            var right = schemas.Last();
+            var from = schemas.First();
+            var to = schemas.Last();
 
-            converter.WriteFileAsync("left", left);
-            converter.WriteFileAsync("riht", right);
+            converter.WriteFileAsync("from", from);
+            converter.WriteFileAsync("to", to);
 
-            ShowDiff(left, right);
-
+            ShowDiff(from, to);
         }
 
-        
-        private void ShowDiff(GraphQlSchema left, GraphQlSchema right)
+        private void ShowDiff(GraphQlSchema from, GraphQlSchema to)
         {
-            var leftTypes = left.Types.ToDictionary(x => x.Name);
-            var rightTypes = right.Types.ToDictionary(x => x.Name);
+            var fromTypes = from.Types.ToDictionary(x => x.Name);
+            var toTypes = to.Types.ToDictionary(x => x.Name);
 
-            CompareTypes(leftTypes, rightTypes);
-            CompareFields(leftTypes, rightTypes);
+            CompareTypes(fromTypes, toTypes);
+            CompareFields(fromTypes, toTypes);
 
-            var comparisonReport = diff.ToMarkdown(options.Left, options.Right);
+            var comparisonReport = diff.ToMarkdown(options.From, options.To);
 
             if (!(options.ReportMarkdownPath is null))
             {
@@ -63,7 +56,7 @@ namespace QLeatherMan.Diff
 
             if (diff.HasBreakingChanges)
             {
-                Console.Error.WriteLine($"looks like {options.Right} introduces breaking-changes from {options.Left}");
+                Console.Error.WriteLine($"looks like {options.To} introduces breaking-changes from {options.From}");
             }
 
             if (!options.Silent)
@@ -72,42 +65,42 @@ namespace QLeatherMan.Diff
             }
         }
 
-        private void CompareTypes(Dictionary<string, GraphQlType> leftTypes, Dictionary<string, GraphQlType> rightTypes)
+        private void CompareTypes(Dictionary<string, GraphQlType> fromTypes, Dictionary<string, GraphQlType> toTypes)
         {
-            var removedTypes = leftTypes.Keys.Except(rightTypes.Keys).ToArray();
+            var removedTypes = fromTypes.Keys.Except(toTypes.Keys).ToArray();
             foreach (var type in removedTypes)
                 diff.Removed(type);
 
-            var addedTypes = rightTypes.Keys.Except(leftTypes.Keys).ToArray();
+            var addedTypes = toTypes.Keys.Except(fromTypes.Keys).ToArray();
             foreach (var type in addedTypes)
                 diff.Added(type);
         }
 
-        private void CompareFields(Dictionary<string, GraphQlType> leftTypes, Dictionary<string, GraphQlType> rightTypes)
+        private void CompareFields(Dictionary<string, GraphQlType> fromTypes, Dictionary<string, GraphQlType> toTypes)
         {
 
-            foreach (var right in rightTypes)
+            foreach (var to in toTypes)
             {
-                if (!leftTypes.TryGetValue(right.Key, out var left))
+                if (!fromTypes.TryGetValue(to.Key, out var from))
                 {
                     return;
                 }
 
-                var leftFields = left.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
-                var rightFields = right.Value.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
+                var fromFields = from.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
+                var toFields = to.Value.Fields?.ToDictionary(x => x.Name) ?? new Dictionary<string, GraphQlField>();
 
-                var removedFieldNames = leftFields.Keys.Except(rightFields.Keys).ToArray();
-                var removedFields = removedFieldNames.Select(x => leftFields[x]).ToArray();
+                var removedFieldNames = fromFields.Keys.Except(toFields.Keys).ToArray();
+                var removedFields = removedFieldNames.Select(x => fromFields[x]).ToArray();
 
-                var addedFieldNames = rightFields.Keys.Except(leftFields.Keys).ToArray();
-                var addedFields = addedFieldNames.Select(x => rightFields[x]).ToArray();
+                var addedFieldNames = toFields.Keys.Except(fromFields.Keys).ToArray();
+                var addedFields = addedFieldNames.Select(x => toFields[x]).ToArray();
 
                 if (!removedFieldNames.Any() && !addedFieldNames.Any())
                 {
                     continue;
                 }
 
-                var modified = diff.Modified(right.Key);
+                var modified = diff.Modified(to.Key);
 
                 modified.Removed(removedFields.Select(x =>
                     (

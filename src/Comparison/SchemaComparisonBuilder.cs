@@ -29,12 +29,12 @@ namespace QLeatherMan.Diff
             return builder;
         }
 
-        public string ToMarkdown(string? leftUri, string? rightUri)
+        public string ToMarkdown(string? fromUri, string? toUri)
         {
             var builder = new StringBuilder();
             builder.AppendLine($"# Differences between");
-            builder.AppendLine($"- {leftUri}");
-            builder.AppendLine($"- {rightUri}");
+            builder.AppendLine($"- {fromUri}");
+            builder.AppendLine($"- {toUri}");
 
             if (!HasChanges())
             {

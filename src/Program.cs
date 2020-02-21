@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using QLeatherMan.Diff;
 using QLeatherMan.Generate;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +22,7 @@ namespace QLeatherMan
             services.AddCommands(_ => _
                 .Add<CompareCommand>()
                 .Add<GenerateCommand>()
+                .Add<ConfigCommand>()
             );
 
             var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb, ConfigVerb>(args);
@@ -77,7 +77,7 @@ namespace QLeatherMan
                 return Enumerable.Empty<string>();
             }
 
-            var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configFile.FullName));
+            var config = JsonSerializer.Deserialize<AutoRunSettings>(File.ReadAllText(configFile.FullName));
 
             var verbs = new List<string>();
 
@@ -95,12 +95,5 @@ namespace QLeatherMan
 
             return verbs;
         }
-    }
-
-
-    public class Config
-    {
-        public GenerateVerb Generate { get; set; }
-        public CompareVerb Compare { get; set; }
     }
 }

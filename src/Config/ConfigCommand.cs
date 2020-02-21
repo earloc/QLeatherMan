@@ -1,4 +1,4 @@
-﻿using QLeatherMan.Generate;
+﻿using QLeatherMan.Config;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -13,15 +13,11 @@ namespace QLeatherMan.Diff
     {
         public async Task RunAsync()
         {
-            var config = new Config()
-            {
-                Generate = new GenerateVerb(),
-                Compare = new CompareVerb()
-            };
+            var config = new AutoRunSettings();
 
             var configFile = new FileInfo(".qlman");
             if (configFile.Exists)
-                throw new NotSupportedException("Overwriting an existing config is not supported. Delete the file '.qlman' and re-run the command.");
+                throw new NotSupportedException(Strings.OverwrtingSettingsFileNotSupported);
 
             var json = JsonSerializer.Serialize(config, new JsonSerializerOptions()
             {
