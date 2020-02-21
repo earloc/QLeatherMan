@@ -22,6 +22,7 @@ namespace QLeatherMan
             services.AddCommands(_ => _
                 .Add<CompareCommand>()
                 .Add<GenerateCommand>()
+                .Add<ConfigCommand>()
             );
 
             var result = Parser.Default.ParseArguments<GenerateVerb, CompareVerb, ConfigVerb>(args);
