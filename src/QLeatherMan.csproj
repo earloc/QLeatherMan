@@ -6,9 +6,9 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-qlman</ToolCommandName>
     <PackageOutputPath>./bin/nupkg</PackageOutputPath>
-    <Version>0.5.1</Version>
-    <AssemblyVersion>0.0.5.1</AssemblyVersion>
-    <FileVersion>0.0.5.1</FileVersion>
+    <Version>0.6.0</Version>
+    <AssemblyVersion>0.0.6.0</AssemblyVersion>
+    <FileVersion>0.0.6.0</FileVersion>
     <AssemblyName>dotnet-qlman</AssemblyName>
     <PackageId>QLeatherMan</PackageId>
     <Authors>earloc</Authors>
@@ -21,9 +21,11 @@
     <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>
-      0.5.0 - tweaking this text ;)
-      
-      
+      0.6.0 - 'config' : add missing command reistration
+            - 'confg'  : BREAKING -> compare-paramters change from Left -> From, Right -> To, for better semantic
+      0.5.1 - tweaking this text ;)
+
+
       0.5.0 - 'general': add support to use qlman without any parameters, and instead read them from a file
       -  'config': generate a sample config for further tweaking
 
