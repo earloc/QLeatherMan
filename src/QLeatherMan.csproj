@@ -6,9 +6,9 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-qlman</ToolCommandName>
     <PackageOutputPath>./bin/nupkg</PackageOutputPath>
-    <Version>0.7.0</Version>
-    <AssemblyVersion>0.0.7.0</AssemblyVersion>
-    <FileVersion>0.0.7.0</FileVersion>
+    <Version>0.7.1</Version>
+    <AssemblyVersion>0.0.7.1</AssemblyVersion>
+    <FileVersion>0.0.7.1</FileVersion>
     <AssemblyName>dotnet-qlman</AssemblyName>
     <PackageId>QLeatherMan</PackageId>
     <Authors>earloc</Authors>
@@ -21,6 +21,7 @@
     <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>
+      0.7.1 - enhance output for 'debuggability'
       0.7.0 - updated GraphQlClientGenerator to 0.5.0
       0.6.0 - 'config' : add missing command reistration
             - 'confg'  : BREAKING -&gt; compare-paramters change from Left -&gt; From, Right -&gt; To, for better semantic
