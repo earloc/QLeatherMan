@@ -30,6 +30,8 @@ namespace QLeatherMan
 
         private static async Task<GraphQlSchema> ReadAsyncCore(string schemaUriOrPath)
         {
+            Console.WriteLine($"reading schema from {schemaUriOrPath}");
+
             var file = new FileInfo(schemaUriOrPath);
 
             var schema = file.Exists ? 
