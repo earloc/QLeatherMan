@@ -6,9 +6,9 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-qlman</ToolCommandName>
     <PackageOutputPath>./bin/nupkg</PackageOutputPath>
-    <Version>0.6.0</Version>
-    <AssemblyVersion>0.0.6.0</AssemblyVersion>
-    <FileVersion>0.0.6.0</FileVersion>
+    <Version>0.7.0</Version>
+    <AssemblyVersion>0.0.7.0</AssemblyVersion>
+    <FileVersion>0.0.7.0</FileVersion>
     <AssemblyName>dotnet-qlman</AssemblyName>
     <PackageId>QLeatherMan</PackageId>
     <Authors>earloc</Authors>
@@ -21,8 +21,9 @@
     <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageReleaseNotes>
+      0.7.0 - updated GraphQlClientGenerator to 0.5.0
       0.6.0 - 'config' : add missing command reistration
-            - 'confg'  : BREAKING -> compare-paramters change from Left -> From, Right -> To, for better semantic
+            - 'confg'  : BREAKING -&gt; compare-paramters change from Left -&gt; From, Right -&gt; To, for better semantic
       0.5.1 - tweaking this text ;)
 
 
@@ -55,7 +56,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
-    <PackageReference Include="GraphQlClientGenerator" Version="0.4.7" />
+    <PackageReference Include="GraphQlClientGenerator" Version="0.5.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
