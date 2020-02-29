@@ -62,6 +62,7 @@ namespace QLeatherMan
 
             foreach (var verb in invokedVerbs)
             {
+                System.Console.WriteLine($"running {verb}");
                 var command = factory.Create(verb);
                 await command.RunAsync().ConfigureAwait(false);
             }

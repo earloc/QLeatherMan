@@ -24,6 +24,8 @@ namespace QLeatherMan.Generate
 
             var schema = await converter.ReadAsync(options.Source).ConfigureAwait(false);
             var content = GraphQlGenerator.GenerateFullClientCSharpFile(schema, options.Namespace);
+
+            Console.WriteLine($"writing client-code to {options.DestinationFile}");
             File.WriteAllText(options.DestinationFile, content);
         }
     }
