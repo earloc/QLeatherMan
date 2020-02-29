@@ -19,5 +19,8 @@ namespace QLeatherMan.Generate
 
         [Option('d', Default = false, HelpText = "generate types and members even when they are deprecated in the schema")]
         public bool GenerateDeprecatedTypes { get; set; }
+
+        [Option('n', Default = false, HelpText = "use C# 8.0 with nullable-reference-type support")]
+        public bool UseNullable { get; set; }
     }
 }

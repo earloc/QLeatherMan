@@ -20,6 +20,7 @@ namespace QLeatherMan.Generate
         public async Task RunAsync()
         {
             GraphQlGeneratorConfiguration.IncludeDeprecatedFields = options.GenerateDeprecatedTypes;
+            GraphQlGeneratorConfiguration.CSharpVersion = options.UseNullable ? CSharpVersion.NewestWithNullableReferences : CSharpVersion.Compatible;
 
             var schema = await converter.ReadAsync(options.Source).ConfigureAwait(false);
             var content = GraphQlGenerator.GenerateFullClientCSharpFile(schema, options.Namespace);
