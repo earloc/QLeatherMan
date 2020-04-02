@@ -6,9 +6,9 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-qlman</ToolCommandName>
     <PackageOutputPath>./bin/nupkg</PackageOutputPath>
-    <Version>0.7.2</Version>
-    <AssemblyVersion>0.0.7.2</AssemblyVersion>
-    <FileVersion>0.0.7.2</FileVersion>
+    <Version>0.8.0</Version>
+    <AssemblyVersion>0.0.8.0</AssemblyVersion>
+    <FileVersion>0.0.8.0</FileVersion>
     <AssemblyName>dotnet-qlman</AssemblyName>
     <PackageId>QLeatherMan</PackageId>
     <Authors>earloc</Authors>
@@ -20,11 +20,12 @@
     <RepositoryUrl>https://github.com/earloc/QLeatherMan</RepositoryUrl>
     <PackageTags>GraphQL C# Client compare diff qlman</PackageTags>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageReleaseNotes>0.7.2 - provide package-description
+    <PackageReleaseNotes>0.8.0 - updated GraphQlClientGenerator to 0.5.1
+      0.7.2 - provide package-description
       0.7.1 - enhance output for 'debuggability'
       0.7.0 - updated GraphQlClientGenerator to 0.5.0
       0.6.0 - 'config' : add missing command reistration
-            - 'confg'  : BREAKING -&gt; compare-paramters change from Left -&gt; From, Right -&gt; To, for better semantic
+      - 'confg'  : BREAKING -&gt; compare-paramters change from Left -&gt; From, Right -&gt; To, for better semantic
       0.5.1 - tweaking this text ;)
 
 
@@ -59,15 +60,15 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
-    <PackageReference Include="GraphQlClientGenerator" Version="0.5.0" />
+    <PackageReference Include="GraphQlClientGenerator" Version="0.5.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.2" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>
