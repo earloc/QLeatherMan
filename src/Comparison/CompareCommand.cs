@@ -26,15 +26,15 @@ namespace QLeatherMan.Diff
         public async Task RunAsync()
         {
             var schemas = await Task.WhenAll(
-                converter.ReadAsync(options.From),
-                converter.ReadAsync(options.To)
+                SchemaConverter.ReadAsync(options.From),
+                SchemaConverter.ReadAsync(options.To)
             ).ConfigureAwait(false);
 
             var from = schemas.First();
             var to = schemas.Last();
 
-            converter.WriteFileAsync("from", from);
-            converter.WriteFileAsync("to", to);
+            SchemaConverter.WriteFileAsync("from", from);
+            SchemaConverter.WriteFileAsync("to", to);
 
             ShowDiff(from, to);
         }
