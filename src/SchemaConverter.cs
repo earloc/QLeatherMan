@@ -11,6 +11,10 @@ namespace QLeatherMan
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1812:Avoid uninstantiated internal classes", Justification = "used via DependencyInjection")]
     internal class SchemaConverter
     {
+        internal protected SchemaConverter()
+        {
+
+        }
         private const string MyFileExtension = ".qlman.json";
 
         internal static readonly JsonSerializerSettings SerializerSettings =
@@ -20,7 +24,7 @@ namespace QLeatherMan
                 Converters = { new StringEnumConverter() }
             };
 
-        public Task<GraphQlSchema> ReadAsync(string? schemaUriOrPath)
+        public static Task<GraphQlSchema> ReadAsync(string? schemaUriOrPath)
         {
             if (schemaUriOrPath is null)
                 throw new ArgumentNullException(nameof(schemaUriOrPath));
@@ -58,7 +62,7 @@ namespace QLeatherMan
             return GraphQlGenerator.DeserializeGraphQlSchema(json);
         }
 
-        internal void WriteFileAsync(string simpleName, GraphQlSchema schema)
+        internal static void WriteFileAsync(string simpleName, GraphQlSchema schema)
         {
             File.WriteAllText($"{simpleName}.{MyFileExtension}", JsonConvert.SerializeObject(schema, SerializerSettings));
         }

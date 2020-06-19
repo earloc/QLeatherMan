@@ -19,11 +19,15 @@ namespace QLeatherMan.Generate
         }
         public async Task RunAsync()
         {
-            GraphQlGeneratorConfiguration.IncludeDeprecatedFields = options.GenerateDeprecatedTypes;
-            GraphQlGeneratorConfiguration.CSharpVersion = options.UseNullable ? CSharpVersion.NewestWithNullableReferences : CSharpVersion.Compatible;
+            var config = new GraphQlGeneratorConfiguration()
+            {
+                IncludeDeprecatedFields = options.GenerateDeprecatedTypes,
+                CSharpVersion = options.UseNullable ? CSharpVersion.NewestWithNullableReferences : CSharpVersion.Compatible
+            };
 
-            var schema = await converter.ReadAsync(options.Source).ConfigureAwait(false);
-            var content = GraphQlGenerator.GenerateFullClientCSharpFile(schema, options.Namespace);
+            var schema = await SchemaConverter.ReadAsync(options.Source).ConfigureAwait(false);
+            var generator = new GraphQlGenerator(config);
+            var content = generator.GenerateFullClientCSharpFile(schema, options.Namespace);
 
             Console.WriteLine($"writing client-code to {options.DestinationFile}");
             File.WriteAllText(options.DestinationFile, content);
