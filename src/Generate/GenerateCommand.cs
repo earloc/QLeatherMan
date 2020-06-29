@@ -10,12 +10,10 @@ namespace QLeatherMan.Generate
     internal class GenerateCommand : ICommand
     {
         private readonly GenerateVerb options;
-        private readonly SchemaConverter converter;
 
-        public GenerateCommand(GenerateVerb options, SchemaConverter converter)
+        public GenerateCommand(GenerateVerb options)
         {
             this.options = options ?? throw new ArgumentNullException(nameof(options));
-            this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
         public async Task RunAsync()
         {
