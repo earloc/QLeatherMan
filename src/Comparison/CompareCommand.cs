@@ -14,13 +14,11 @@ namespace QLeatherMan.Diff
     {
         private readonly CompareVerb options;
         private readonly SchemaComparisonBuilder diff;
-        private readonly SchemaConverter converter;
 
-        public CompareCommand(CompareVerb options, SchemaComparisonBuilder diff, SchemaConverter converter)
+        public CompareCommand(CompareVerb options, SchemaComparisonBuilder diff)
         {
             this.options = options ?? throw new ArgumentNullException(nameof(options));
             this.diff = diff ?? throw new ArgumentNullException(nameof(diff));
-            this.converter = converter ?? throw new ArgumentNullException(nameof(converter));
         }
         
         public async Task RunAsync()
