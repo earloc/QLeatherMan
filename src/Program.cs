@@ -17,7 +17,6 @@ namespace QLeatherMan
             var services = new ServiceCollection();
 
             services.AddSingleton<SchemaComparisonBuilder>();
-            services.AddSingleton<SchemaConverter>();
 
             services.AddCommands(_ => _
                 .Add<CompareCommand>()
