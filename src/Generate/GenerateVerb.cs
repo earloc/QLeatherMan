@@ -1,4 +1,5 @@
 ﻿using CommandLine;
+using GraphQlClientGenerator;
 
 namespace QLeatherMan.Generate
 {
@@ -22,5 +23,9 @@ namespace QLeatherMan.Generate
 
         [Option('n', Default = false, HelpText = "use C# 8.0 with nullable-reference-type support")]
         public bool UseNullable { get; set; }
+
+        [Option('j', HelpText = "specifies the strategy with which properteis are generated, Default is 'CaseInsensitive'", MetaValue = "CaseInsensitive")]
+
+        public JsonPropertyGenerationOption JsonPropertyGeneration { get; set; } = JsonPropertyGenerationOption.CaseInsensitive;
     }
 }

@@ -20,6 +20,7 @@ namespace QLeatherMan.Generate
             var config = new GraphQlGeneratorConfiguration()
             {
                 IncludeDeprecatedFields = options.GenerateDeprecatedTypes,
+                JsonPropertyGeneration = options.JsonPropertyGeneration,
                 CSharpVersion = options.UseNullable ? CSharpVersion.NewestWithNullableReferences : CSharpVersion.Compatible
             };
 
