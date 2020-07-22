@@ -19,10 +19,7 @@ namespace QLeatherMan.Diff
             if (configFile.Exists)
                 throw new NotSupportedException(Strings.OverwrtingSettingsFileNotSupported);
 
-            var json = JsonSerializer.Serialize(config, new JsonSerializerOptions()
-            {
-                WriteIndented = true
-            });
+            var json = JsonSerializer.Serialize(config, JsonDefaults.Options);
 
             await File.WriteAllTextAsync(configFile.FullName, json)
                 .ConfigureAwait(false);
