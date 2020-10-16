@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace QLeatherMan
@@ -77,7 +78,7 @@ namespace QLeatherMan
                 return Enumerable.Empty<string>();
             }
 
-            var config = JsonSerializer.Deserialize<AutoRunSettings>(File.ReadAllText(configFile.FullName));
+            var config = JsonSerializer.Deserialize<AutoRunSettings>(File.ReadAllText(configFile.FullName), JsonDefaults.Options);
 
             var verbs = new List<string>();
 
